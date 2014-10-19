@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import ru.csc.ir.index.impl.InvertedIndex;
 import ru.csc.ir.structure.Document;
 import ru.csc.ir.structure.Term;
+import ru.csc.ir.structure.impl.CoordinateTerm;
 import ru.csc.ir.structure.impl.DocumentImpl;
 import ru.csc.ir.structure.impl.TermImpl;
 
@@ -47,13 +48,17 @@ public class Indexer {
     private void indexFile(@NotNull File file)  {
         try {
             Scanner scanner = new Scanner(file);
+            int coordinate = 0;
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 line = line.replaceAll("\\?", "");
 
                 String[] words = line.split("\\|");
 
-                Arrays.stream(words).forEach(w -> index.indexTerm(new TermImpl((w)), new DocumentImpl(file)));
+                final int c = coordinate;
+                Arrays.stream(words).forEach(w -> index.indexTerm(new CoordinateTerm(w, c), new DocumentImpl(file)));
+
+                coordinate++;
             }
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
