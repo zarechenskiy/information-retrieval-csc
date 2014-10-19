@@ -12,6 +12,7 @@ import java.util.List;
 public class SearchQuery {
     private Operator.TYPE operatorType = null;
     private List<Term> terms = new ArrayList<>();
+    private List<Operator> operators = new ArrayList<>();
 
     public void single(@NotNull Term term) {
         terms.clear();
@@ -28,6 +29,18 @@ public class SearchQuery {
         terms.add(term);
     }
 
+    public void dist(@NotNull Term term, @NotNull Operator operator) {
+        setOperatorType(Operator.TYPE.DIST);
+        terms.add(term);
+        operators.add(operator);
+    }
+
+    @NotNull
+    public List<Operator> getOperators() {
+        return Collections.unmodifiableList(operators);
+    }
+
+    @NotNull
     public List<Term> getTerms() {
         return Collections.unmodifiableList(terms);
     }

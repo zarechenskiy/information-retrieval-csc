@@ -64,6 +64,9 @@ public class QueryParser {
             case OR:
                 searchQuery.or(operand);
                 break;
+            case DIST:
+                searchQuery.dist(operand, operator);
+                break;
         }
     }
 
@@ -71,7 +74,6 @@ public class QueryParser {
         if (!(term instanceof Operator)) {
             throw new ErrorParsingException(EXPECTED_OPERATOR_ERROR_MESSAGE);
         }
-
     }
 
     private void matchOperand(@NotNull Term term) {
