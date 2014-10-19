@@ -1,7 +1,6 @@
 package ru.csc.ir.structure.impl;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 import ru.csc.ir.structure.Operator;
 import ru.csc.ir.structure.Term;
 
@@ -29,6 +28,10 @@ public class TermImpl implements Term, Serializable {
             if (operator.getName().equals(term)) {
                 return new OperatorImpl(term);
             }
+        }
+
+        if (term.startsWith("/")) {
+            return new CoordinateOpImpl(term);
         }
 
         return new TermImpl(term);

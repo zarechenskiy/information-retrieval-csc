@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 public interface Operator extends Term {
     public static enum TYPE {
-        AND("AND"), OR("OR");
+        AND("AND"), OR("OR"), DIST("DIST");
 
         private final String operatorName;
 
