@@ -31,7 +31,7 @@
 	зенит OR бенфика OR монако OR байер
     found somedoc42.html, somedoc43.html and 5 more
 
-## Метрики (DCG, NDCG, PFound)
+## Метрики (DCG, NDCG, PFound), java класс: ru.csc.ir.metrics.Metrics 
 
 Пример запуска программы для тестирования метрик:
 
